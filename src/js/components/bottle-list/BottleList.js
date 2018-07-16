@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -9,44 +9,103 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
+import Slide from '@material-ui/core/Slide';
 
 const mapStateToProps = state => {
-    return { bottles: state.bottles };
+    return { 
+        bottles: state.bottles 
+    };
+}
+
+const mapDispatchToProps = state => {
+    return {
+        
+    };
 }
 
 
 const styles = theme => ({
-    fab: {
-      margin: theme.spacing.unit * 2,
+    root: {
+        textAlign: 'left',
+        'margin': theme.spacing.unit * 5,
     },
-    absolute: {
-      position: 'absolute',
-      bottom: theme.spacing.unit * 2,
-      right: theme.spacing.unit * 3,
+    card: {
+        maxWidth: 345,
     },
+    button: {
+        position: 'absolute',
+        right: theme.spacing.unit * 5,
+        bottom: theme.spacing.unit * 5
+    }
   });
 
 
-const ConnectedBottleList = ({ bottles }) => {
-    
-    return (
-        <Grid container spacing={16}>
-            {bottles.map(bottle =>(
-                <Grid item xs={12} sm={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                Test
-                            </Typography>
-                        </CardContent>
-                    </Card>
+
+class ConnectedBottleList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bottles: props.bottles
+        }
+        this.handleCreate = this.handleCreate.bind(this);
+        this.handleShowDetail = this.handleShowDetail.bind(this);
+    }
+
+    handleCreate() {
+        console.log('hey!', this);
+    }
+
+    handleShowDetail(event) {
+        console.log('Show details', event);
+    }
+
+
+    renderBottle(bottle) {
+        const { classes } =this.props;
+        return (
+            <Slide direction="up" in="true" mountOnEnter unmountOnExit>
+                <Card className={classes.card}>
+                    <CardMedia
+                    image="/static/images/cards/contemplative-reptile.jpg"
+                    title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="headline" component="h2">
+                            {bottle.name}
+                        </Typography>
+                        <Typography component="p">
+                            {bottle.description}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                    <Button variant="contained" size="small" color="primary" onClick={this.handleShowDetail.bind(this, bottle.id)}>
+                        Détails
+                    </Button>
+                    </CardActions>
+                </Card>
+            </Slide>
+        );
+    }
+
+
+
+    render() {
+        const { classes } =this.props;
+        return (
+            <div className={classes.root}>
+                <Grid container spacing={16}>
+                    {this.state.bottles.map(bottle =>(
+                        <Grid key={bottle.id} item xs={12} sm={3}>
+                            {this.renderBottle(bottle)}
+                        </Grid>
+                    ))}
+                    <Button className={classes.button} variant="fab" color="primary" aria-label="add" onClick={this.handleCreate}>
+                        <AddIcon />
+                    </Button>
                 </Grid>
-            ))}
-            <Button variant="fab" color="primary" aria-label="add" className="absolute">
-                <AddIcon />
-            </Button>
-        </Grid>
-    );
+            </div>
+        );
+    }
 }
 
 

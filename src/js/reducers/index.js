@@ -4,7 +4,26 @@ import { ADD_BOTTLE, CREATE_BOTTLE, DELETE_BOTTLE, REMOVE_BOTTLE, SHOW_DETAILS, 
 
 
 const initialState = {
-    bottles: [],
+    bottles: [
+        { 
+            id: 1,
+            name: 'Bouteille 1',
+            quantity: 0,
+            description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
+        },
+        { 
+            id: 2,
+            name: 'Bouteille 2',
+            quantity: 20,
+            description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
+        },
+        { 
+            id: 3,
+            name: 'Bouteille 3',
+            quantity: 30,
+            description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
+        }
+    ],
     bottleDetails: null,
 };
 
