@@ -11,6 +11,8 @@ const initialState = {
             subtitle: 'Vin rouge bordeau',
             image: 'https://www.atabula.com/wp-content/uploads/2016/09/etiquette-chapoutier-braille.png',
             quantity: 0,
+            year: 1982,
+            tags: ['tag1', 'tag2'],
             description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
         },
         { 
@@ -19,6 +21,8 @@ const initialState = {
             subtitle: 'Vin rouge bordeau',
             image: 'https://www.atabula.com/wp-content/uploads/2016/09/etiquette-chapoutier-braille.png',
             quantity: 20,
+            year: 1982,
+            tags: ['tag1', 'tag2'],
             description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
         },
         { 
@@ -27,6 +31,8 @@ const initialState = {
             subtitle: 'Vin rouge bordeau',
             image: 'https://www.atabula.com/wp-content/uploads/2016/09/etiquette-chapoutier-braille.png',
             quantity: 30,
+            year: 1982,
+            tags: ['tag1', 'tag2'],
             description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
         }
     ],

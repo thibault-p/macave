@@ -13,6 +13,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Avatar from "@material-ui/core/Avatar";
+import CardHeader from "@material-ui/core/CardHeader";
+import indigo from '@material-ui/core/colors/indigo';
 
 const mapStateToProps = state => {
     return { 
@@ -21,11 +23,9 @@ const mapStateToProps = state => {
 }
 
 
-
 const styles = theme => ({
     root: {
-        //paddingTop: theme.spacing.unit * 9,
-        paddingBottom: theme.spacing.unit * 9,
+        paddingBottom: theme.spacing.unit * 11,
         height: '100%',
         textAlign: 'left',
     },
@@ -42,7 +42,14 @@ const styles = theme => ({
     },
     chip: {
         right: theme.spacing.unit / 2,
-        position: 'absolute'
+        position: 'absolute',
+        backgroundColor: indigo[100]
+    },
+    coloredAvatar: {
+        backgroundColor: indigo[500]
+    },
+    tagChip: {
+        margin: theme.spacing.unit / 2
     }
   });
 
@@ -81,26 +88,30 @@ class ConnectedBottleList extends Component {
         return (
             <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                 <Card className={classes.card}>
+                    <CardHeader
+                        title={bottle.name}
+                        subheader={bottle.year}
+                    />
                     <CardMedia 
                         className={classes.media} 
                         image={bottle.image} />
                     <CardContent>
-                        <Typography gutterBottom variant="headline">
-                            {bottle.name}
-                        </Typography>
-                        <Typography variant="subheading" gutterBottom>
+                        <Typography variant="caption" gutterBottom>
                             {bottle.subtitle}
                         </Typography>
-                        <Typography component="p" noWrap={true}>
-                            {bottle.description}
-                        </Typography>
+                        {bottle.tags.map((tag, idx) => (
+                           <Chip
+                            key={idx}
+                            label={tag}
+                            className={classes.tagChip}/> 
+                        ))}
                     </CardContent>
                     <CardActions>
                         <Chip 
                             className = {classes.chip}
                             avatar={
-                                <Avatar>
-                                    <BottleIcon />
+                                <Avatar className={classes.coloredAvatar}>
+                                    <BottleIcon style={{color: 'white'}}/>
                                 </Avatar>
                             }
                             label={bottle.quantity}
