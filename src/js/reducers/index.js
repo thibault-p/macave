@@ -36,7 +36,10 @@ const initialState = {
             description: 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de'
         }
     ],
-    bottleDetails: null,
+    details: {
+        bottle: null,
+        edit: false
+    }
 };
 
 const rootReducer = (state = initialState, action = {}) => {
@@ -73,12 +76,18 @@ const rootReducer = (state = initialState, action = {}) => {
         case SHOW_DETAILS: 
             return {
                 ...state,
-                bottleDetails: state.bottles.find(bottle => bottle.id === action.payload.id)
+                details: {
+                    bottle: state.bottles.find(bottle => bottle.id === action.payload),
+                    edit: false
+                }
             };
         case HIDE_DETAILS:
             return {
                 ...state,
-                bottleDetails: null
+                details: {
+                    bottle: null,
+                    edit: false
+                }
             };
 
         default:

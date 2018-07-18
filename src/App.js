@@ -5,6 +5,7 @@ import BottleList from './js/components/bottle-list/BottleList'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import BottleDetails from './js/components/bottle-details/BottleDetails';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             </Toolbar>
           </AppBar>
           <BottleList />
+          <BottleDetails />
         </div>
     );
   }

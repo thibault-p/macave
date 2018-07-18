@@ -11,16 +11,23 @@ import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
-import SvgIcon from "@material-ui/core/SvgIcon";
 import Avatar from "@material-ui/core/Avatar";
 import CardHeader from "@material-ui/core/CardHeader";
 import indigo from '@material-ui/core/colors/indigo';
+import { showDetails } from "../../actions/index";
+import BottleIcon from '../bottle-counter/BottleIcon';
 
 const mapStateToProps = state => {
     return { 
         bottles: state.bottles 
     };
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        showDetails: (bottleId) => {dispatch(showDetails(bottleId))}
+    };
+};
 
 
 const styles = theme => ({
@@ -54,15 +61,6 @@ const styles = theme => ({
   });
 
 
-function  BottleIcon(props) {
-    return (
-        <SvgIcon {...props}>
-            <path fill="#000000" d="M10,22A1,1 0 0,1 9,21V11C9,9 10,7.25 11,7V2.5A0.5,0.5 0 0,1 11.5,2H12.5A0.5,0.5 0 0,1 13,2.5V7C14,7.25 15,9 15,11V21A1,1 0 0,1 14,22H10Z" />
-        </SvgIcon>
-    );
-}
-
-
 class ConnectedBottleList extends Component {
     constructor(props) {
         super(props);
@@ -77,11 +75,9 @@ class ConnectedBottleList extends Component {
         console.log('hey!', this);
     }
 
-    handleShowDetail(event) {
-        console.log('Show details', event);
+    handleShowDetail(id) {
+        this.props.showDetails(id);
     }
-
-
 
     renderBottle(bottle) {
         const { classes } =this.props;
@@ -157,4 +153,4 @@ class ConnectedBottleList extends Component {
 
 
 
-export default withStyles(styles)(connect(mapStateToProps)(ConnectedBottleList));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ConnectedBottleList));
